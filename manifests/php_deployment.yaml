@@ -20,11 +20,6 @@ spec:
         - name: vtbbackend
           image: vtbhackathon.azurecr.io/cyberbruhvtbbackend
           env:
-            - name: DB_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secret
-                  key: host
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
