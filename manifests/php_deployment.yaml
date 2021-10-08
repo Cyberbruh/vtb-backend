@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vtbbackend
+  labels:
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vtbbackend
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: vtbbackend
+        tier: backend
+    spec:
+      containers:
+        - name: vtbbackend
+          image: vtbbackend
+          imagePullPolicy: Never
+          volumeMounts:
+            - mountPath: /code
+              name: code
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          lifecycle:
+            postStart:
+              exec:
+                command: [ "/bin/sh", "-c", "cp -r /var/www/html/. /code && chown -R www-data:www-data /code" ]
+      volumes:
+        - name: code
+          persistentVolumeClaim:
+            claimName: code
