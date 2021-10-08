@@ -14,5 +14,3 @@ COPY --chown=www-data:www-data . .
 RUN composer install --quiet --optimize-autoloader --no-dev
 
 COPY .env.example .env
-
-RUN php artisan key:generate

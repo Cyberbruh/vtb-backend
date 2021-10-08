@@ -45,7 +45,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: [ "/bin/sh", "-c", "cp -r /var/www/html/. /code && chown -R www-data:www-data /code" ]
+                command: [ "/bin/sh", "-c", "cp -r /var/www/html/. /code && chown -R www-data:www-data /code && php artisan key:generate && php artisan migrate --seed" ]
       volumes:
         - name: code
           persistentVolumeClaim:
