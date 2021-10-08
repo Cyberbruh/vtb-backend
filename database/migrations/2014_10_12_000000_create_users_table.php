@@ -17,8 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->integer('age');
             $table->integer('experience');
-            $table->string('blueprint');
-            $table->string('token');
+            $table->mediumText('blueprint');
             $table->timestamps();
         });
     }
