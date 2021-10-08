@@ -18,8 +18,7 @@ spec:
     spec:
       containers:
         - name: vtbbackend
-          image: vtbbackend
-          imagePullPolicy: Never
+          image: vtbhackathon.azurecr.io/cyberbruhvtbbackend
           volumeMounts:
             - mountPath: /code
               name: code
