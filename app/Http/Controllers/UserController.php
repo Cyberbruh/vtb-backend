@@ -24,9 +24,7 @@ class UserController extends Controller
             'age' => $data['age'],
             'experience' => $data['experience'],
             'blueprint' => $data['blueprint'],
-            'token' => '1234',
         ]);
-        Auth::login($user);
         $token = $user->createToken('api_token');
         return response()->json(['token' => $token->plainTextToken]);
     }
