@@ -13,4 +13,16 @@ class MainController extends Controller
     {
         return view('index');
     }
+    public function admin()
+    {
+        return view('admin.index');
+    }
+    public function admin_login(Request $request)
+    {
+        if ($request->input('key') == "123") {
+            session(['admin' => 'true']);
+            return redirect()->route('admin.index');
+        }
+        return "";
+    }
 }

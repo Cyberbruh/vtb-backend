@@ -40,4 +40,20 @@ class EventController extends Controller
         ];
         return $result;
     }
+    public function form()
+    {
+        return view('admin.event', ['events' => Event::with('tags')->get(), 'tags' => Tag::get(), 'sum_tickets' => Event::sum('probability')]);
+    }
+    public function create(Request $request)
+    {
+        if ($request->input("title") && $request->input("text") && $request->input("tags")) {
+            Tag::create([
+                'name' => $request->input("name"),
+                'description' => $request->input("description"),
+                'image' => $request->input("image"),
+                'tags' => $request->input("tags"),
+            ]);
+        }
+        return redirect()->back();
+    }
 }
