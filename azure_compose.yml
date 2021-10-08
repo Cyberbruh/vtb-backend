@@ -46,4 +46,4 @@ networks:
         driver: bridge
 volumes:
     sailmysql:
-        driver: local
+        driver: azure_file
