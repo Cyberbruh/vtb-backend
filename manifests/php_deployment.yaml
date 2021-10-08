@@ -19,6 +19,22 @@ spec:
       containers:
         - name: vtbbackend
           image: vtbhackathon.azurecr.io/cyberbruhvtbbackend
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: host
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
           volumeMounts:
             - mountPath: /code
               name: code
