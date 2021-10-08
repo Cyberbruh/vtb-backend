@@ -20,12 +20,12 @@ class CompanyController extends Controller
     public function create(Request $request)
     {
         if ($request->input("name") && $request->input("description") && $request->input("image") && $request->input("tags")) {
-            Tag::create([
+            $company = Company::create([
                 'name' => $request->input("name"),
                 'description' => $request->input("description"),
                 'image' => $request->input("image"),
-                'tags' => $request->input("tags"),
             ]);
+            $company->tags()->attach($request->input("tags"));
         }
         return redirect()->back();
     }

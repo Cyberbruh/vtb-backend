@@ -46,13 +46,15 @@ class EventController extends Controller
     }
     public function create(Request $request)
     {
-        if ($request->input("title") && $request->input("text") && $request->input("tags")) {
-            Tag::create([
-                'name' => $request->input("name"),
-                'description' => $request->input("description"),
-                'image' => $request->input("image"),
-                'tags' => $request->input("tags"),
+        if ($request->input("title") && $request->input("text") && $request->input("probability") && $request->input("tags")) {
+            $event = Event::create([
+                'title' => $request->input("title"),
+                'text' => $request->input("text"),
+                'probability' => $request->input("probability"),
             ]);
+            foreach ($request->input("tags") as $tag) {
+                $event->tags()->attach($tag, ["change" => $request->input("change" . $tag)]);
+            }
         }
         return redirect()->back();
     }
