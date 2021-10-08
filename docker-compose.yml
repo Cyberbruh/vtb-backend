@@ -13,6 +13,8 @@ services:
         depends_on:
             - mysql
     mysql:
+        ports:
+            - "3306:3306" #debug
         image: mysql:8.0
         restart: always
         environment:
