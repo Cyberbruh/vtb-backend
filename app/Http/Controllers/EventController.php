@@ -34,12 +34,22 @@ class EventController extends Controller
                 ]);
             }
         }
-        $result = [
-            "title" => $event->title,
-            "text" => $event->text,
-            "image" => $event->image,
-            "changes" => $changes,
-        ];
+        $difficulty = 0;
+        if ($difficulty)
+            $result = [
+                "title" => $event->title,
+                "text" => $event->text,
+                "image" => $event->image,
+                "changes" => $changes,
+            ];
+        else
+            $result = [
+                "title" => $event->title,
+                "text" => $event->text,
+                "solution" => $event->solution,
+                "image" => $event->image,
+                "changes" => $changes,
+            ];
         return $result;
     }
     public function form()
