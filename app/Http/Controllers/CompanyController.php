@@ -30,4 +30,9 @@ class CompanyController extends Controller
         }
         return redirect()->back();
     }
+    public function delete(Request $request, Company $company)
+    {
+        $company->delete();
+        return redirect()->back();
+    }
 }

@@ -2,14 +2,17 @@
 
 @section('content')
     @foreach($companies as $company)
-        <div>{{ $company->name }}</div>
-        <div>{{ $company->description }}</div>
-        <div>{{ $company->image }}</div>
-        <div>{{ $company->rate }}</div>
-        <div>Теги:
-            @foreach($company->tags as $tag)
-                <div>{{ $tag->name }}</div>
-            @endforeach
+        <div>
+            <div>{{ $company->name }}</div>
+            <div>{{ $company->description }}</div>
+            <div>{{ $company->image }}</div>
+            <div>{{ $company->rate }}</div>
+            <div>Теги:
+                @foreach($company->tags as $tag)
+                    <div>{{ $tag->name }}</div>
+                @endforeach
+            </div>
+            <a href="{{ route('company.delete', $company->id) }}">Удалить</a>
         </div>
     @endforeach
 
