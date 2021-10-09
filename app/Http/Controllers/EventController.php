@@ -34,7 +34,10 @@ class EventController extends Controller
                 ]);
             }
         }
-        $difficulty = 0;
+        if ($request->user()->experience != 2)
+            $difficulty = 0;
+        else
+            $difficulty = 1;
         if ($difficulty)
             $result = [
                 "title" => $event->title,
