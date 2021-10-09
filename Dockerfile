@@ -17,4 +17,6 @@ COPY --chown=www-data:www-data . .
 
 RUN composer install --quiet --optimize-autoloader --no-dev
 
-COPY .env.example .env
+COPY --chown=www-data:www-data .env.example .env
+
+RUN chmod -R 777 /var/www/html/storage
