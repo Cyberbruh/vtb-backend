@@ -7,9 +7,8 @@ RUN apt-get update && apt-get install -y libzip-dev \
 
 WORKDIR /var/www/html/
 
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+RUN a2enmod rewrite
+COPY /server-config/app.conf /etc/apache2/sites-available/
 
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
 
@@ -20,3 +19,6 @@ RUN composer install --quiet --optimize-autoloader --no-dev
 COPY --chown=www-data:www-data .env.example .env
 
 RUN chmod -R 777 /var/www/html/storage
+
+RUN a2dissite 000-default.conf
+RUN a2ensite app.conf
