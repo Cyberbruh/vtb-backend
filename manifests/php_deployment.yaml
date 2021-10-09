@@ -33,6 +33,11 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: password
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: password
           resources:
             limits:
               memory: "128Mi"

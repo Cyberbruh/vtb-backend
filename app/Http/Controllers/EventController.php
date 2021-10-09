@@ -12,7 +12,7 @@ class EventController extends Controller
     public function generate(Request $request)
     {
         $sum_tickets = Event::sum('probability');
-        $ticket = rand(1, $sum_tickets);
+        $ticket = rand(0, $sum_tickets);
         $events = Event::with('tags')->get();
         $event = null;
         $sum = 0;
