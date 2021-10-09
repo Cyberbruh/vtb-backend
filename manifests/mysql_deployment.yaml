@@ -13,7 +13,8 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:8.0
+          image: mariadb
+          imagePullPolicy: Always
           resources:
             limits:
               memory: "128Mi"
@@ -22,6 +23,9 @@ spec:
             - containerPort: 3306
               name: mysql
           volumeMounts:
+            # - name: mysql-config
+            #   mountPath: /etc/mysql/conf.d/default_auth.cnf
+            #   subPath: default_auth
             - mountPath: /var/lib/mysql
               name: mysql-storage
           env:
@@ -43,6 +47,9 @@ spec:
             - name: MYSQL_DATABASE
               value: vtb_backend
       volumes:
+        # - name: mysql-config
+        #   configMap:
+        #     name: mysql-config
         - name: mysql-storage
           persistentVolumeClaim:
             claimName: mysql-storage
