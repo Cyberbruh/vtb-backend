@@ -18,6 +18,7 @@ class DataSeeder extends Seeder
             "name" => "VTB",
             "description" => "ABABABADOAOBOA",
             "image" => "localhost/123.jpg",
+            "rate" => 1.23,
         ]);
 
         DB::table('tags')->insert([
