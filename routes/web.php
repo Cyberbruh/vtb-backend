@@ -24,6 +24,7 @@ Route::middleware('admin')->group(function () {
     Route::post('/tag', 'TagController@create')->name('tag.create');
     Route::get('/company', 'CompanyController@form')->name('company.form');
     Route::post('/company', 'CompanyController@create')->name('company.create');
+    Route::get('/company/delete/{company}', 'CompanyController@delete')->name('company.delete');
     Route::get('/event', 'EventController@form')->name('event.form');
     Route::post('/event', 'EventController@create')->name('event.create');
 });
