@@ -5,6 +5,7 @@
         <div>{{ $company->name }}</div>
         <div>{{ $company->description }}</div>
         <div>{{ $company->image }}</div>
+        <div>{{ $company->rate }}</div>
         <div>Теги:
             @foreach($company->tags as $tag)
                 <div>{{ $tag->name }}</div>

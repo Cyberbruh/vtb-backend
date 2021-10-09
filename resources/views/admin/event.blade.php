@@ -4,6 +4,7 @@
     @foreach($events as $event)
         <div>{{ $event->title }}</div>
         <div>{{ $event->text }}</div>
+        <div>{{ $event->image }}</div>
         <div>{{ $event->probability }}/{{ $sum_tickets }}</div>
         <div>Теги:
             @foreach($event->tags as $tag)
