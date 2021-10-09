@@ -19,6 +19,8 @@ spec:
       containers:
         - name: vtbbackend
           image: vtbhackathon.azurecr.io/cyberbruhvtbbackend
+          ports:
+            - containerPort: 80
           env:
             - name: DB_USERNAME
               valueFrom:
@@ -30,9 +32,6 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: password
-          volumeMounts:
-            - mountPath: /code
-              name: code
           resources:
             limits:
               memory: "128Mi"
@@ -40,8 +39,4 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: [ "/bin/sh", "-c", "cp -r /var/www/html/. /code && chown -R www-data:www-data /code && php artisan key:generate && php artisan migrate --seed" ]
-      volumes:
-        - name: code
-          persistentVolumeClaim:
-            claimName: code
+                command: [ "/bin/sh", "-c", "php artisan key:generate && php artisan migrate --seed" ]
