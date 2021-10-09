@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vtbbackend
+  labels:
+    tier: backend
+spec:
+  selector:
+    app: vtbbackend
+    tier: backend
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80

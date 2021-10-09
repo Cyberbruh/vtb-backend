@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vtbbackend
+  labels:
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vtbbackend
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: vtbbackend
+        tier: backend
+    spec:
+      containers:
+        - name: vtbbackend
+          image: vtbhackathon.azurecr.io/cyberbruhvtbbackend
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: password
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          lifecycle:
+            postStart:
+              exec:
+                command: [ "/bin/sh", "-c", "php artisan key:generate && php artisan migrate || php artisan migrate:fresh" ]
