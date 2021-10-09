@@ -17,6 +17,7 @@
     <div>Имя:<input type="text" name="name" style="border: 1px solid black"></div>
     <div>Описание:<input type="text" name="description" style="border: 1px solid black"></div>
     <div>Изображение:<input type="text" name="image" style="border: 1px solid black"></div>
+    <div>Начальная цена акции:<input type="text" name="rate" style="border: 1px solid black"></div>
     @foreach($tags as $tag)
         <div>
             <input type="checkbox" name="tags[]" value="{{ $tag->id }}"  style="border: 1px solid black"><span>{{ $tag->name }}</span>

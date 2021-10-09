@@ -18,6 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->text('name');
             $table->mediumText('description');
             $table->text('image');
+            $table->double('rate');
             $table->timestamps();
         });
     }

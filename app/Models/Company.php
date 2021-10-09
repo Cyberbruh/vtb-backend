@@ -12,6 +12,7 @@ class Company extends Model
         'name',
         'description',
         'image',
+        'rate'
     ];
 
     public function tags()
