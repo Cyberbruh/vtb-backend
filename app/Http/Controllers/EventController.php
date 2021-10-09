@@ -12,7 +12,7 @@ class EventController extends Controller
     public function generate(Request $request)
     {
         $sum_tickets = Event::sum('probability');
-        $ticket = rand(0, $sum_tickets);
+        $ticket = rand(0, $sum_tickets - 1);
         $events = Event::with('tags')->get();
         $event = null;
         $sum = 0;
@@ -21,6 +21,7 @@ class EventController extends Controller
                 $event = $i;
                 break;
             }
+            $sum += $i->probability;
         }
         if (!$event)
             return response()->json("Zero events in db", 400);
@@ -36,7 +37,7 @@ class EventController extends Controller
         $result = [
             "title" => $event->title,
             "text" => $event->text,
-            "image" => $event->iage,
+            "image" => $event->image,
             "changes" => $changes,
         ];
         return $result;
