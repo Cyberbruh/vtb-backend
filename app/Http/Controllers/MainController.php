@@ -19,7 +19,7 @@ class MainController extends Controller
     }
     public function admin_login(Request $request)
     {
-        if ($request->input('key') == '123456') {
+        if ($request->input('key') == "123") {
             session(['admin' => 'true']);
             return redirect()->route('admin.index');
         }

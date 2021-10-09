@@ -18,6 +18,7 @@ class CreateEventsTable extends Migration
             $table->text('title');
             $table->mediumText('text');
             $table->double('probability');
+            $table->text('image');
             $table->timestamps();
         });
     }
