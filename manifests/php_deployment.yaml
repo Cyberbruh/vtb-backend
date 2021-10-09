@@ -45,4 +45,4 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: [ "/bin/sh", "-c", "php artisan key:generate && php artisan migrate --seed" ]
+                command: [ "/bin/sh", "-c", "php artisan key:generate && php artisan migrate --seed || php artisan migrate:fresh --seed" ]
