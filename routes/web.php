@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'MainController@index')->name('index');
+
+Route::get('/admin/login', 'MainController@admin_login');
+
+Route::middleware('admin')->group(function () {
+    Route::get('/admin', 'MainController@admin')->name('admin.index');
+    Route::get('/tag', 'TagController@form')->name('tag.form');
+    Route::post('/tag', 'TagController@create')->name('tag.create');
+    Route::get('/company', 'CompanyController@form')->name('company.form');
+    Route::post('/company', 'CompanyController@create')->name('company.create');
+    Route::get('/event', 'EventController@form')->name('event.form');
+    Route::post('/event', 'EventController@create')->name('event.create');
 });

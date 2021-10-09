@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/register', 'UserController@register');
+Route::middleware(['auth:sanctum'])->group(function () {
+    //Route::get('/user', 'UserController@register');
+    Route::post('/event/generate', 'EventController@generate');
+    Route::get('/companies', 'CompanyController@get');
 });
