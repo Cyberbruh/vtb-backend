@@ -45,6 +45,8 @@ class DataSeeder extends Seeder
             ipsum doleres lorem ipsum doleres lorem ipsum doleres
              lorem ipsum doleres lorem ipsum doleres lorem ipsum doleres",
             "probability" => "100",
+            "image" => "localhost",
+            "solution" => "adawdawdawdawdawdawdawdadadwa",
         ]);
 
         DB::table('event_tag')->insert([
