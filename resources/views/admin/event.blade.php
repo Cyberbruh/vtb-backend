@@ -16,6 +16,7 @@
         @csrf
         <div>Заголовок:<input type="text" name="title" style="border: 1px solid black"></div>
         <div>Текст:<textarea name="text" style="border: 1px solid black"></textarea></div>
+        <div>Изображение:<input type="text" name="image" style="border: 1px solid black"></div>
         <div>Вероятность из {{ $sum_tickets }} билетов:<input type="text" name="probability" style="border: 1px solid black"></div>
         @foreach($tags as $tag)
             <div>

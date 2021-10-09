@@ -12,6 +12,7 @@ class Event extends Model
         'title',
         'text',
         'probability',
+        'image',
     ];
 
     public function tags()
