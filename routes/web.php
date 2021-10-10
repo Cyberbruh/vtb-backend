@@ -27,4 +27,5 @@ Route::middleware('admin')->group(function () {
     Route::get('/company/delete/{company}', 'CompanyController@delete')->name('company.delete');
     Route::get('/event', 'EventController@form')->name('event.form');
     Route::post('/event', 'EventController@create')->name('event.create');
+    Route::get('/event/delete/{event}', 'EventController@delete')->name('event.delete');
 });
