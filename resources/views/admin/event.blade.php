@@ -2,14 +2,18 @@
 
 @section('content')
     @foreach($events as $event)
-        <div>{{ $event->title }}</div>
-        <div>{{ $event->text }}</div>
-        <div>{{ $event->image }}</div>
-        <div>{{ $event->probability }}/{{ $sum_tickets }}</div>
-        <div>Теги:
-            @foreach($event->tags as $tag)
-                <div>{{ $tag->name }} ({{$tag->pivot->change}})</div>
-            @endforeach
+        <div>
+            <div>{{ $event->title }}</div>
+            <div>{{ $event->text }}</div>
+            <div>{{ $event->solution }}</div>
+            <div>{{ $event->image }}</div>
+            <div>{{ $event->probability }}/{{ $sum_tickets }}</div>
+            <div>Теги:
+                @foreach($event->tags as $tag)
+                    <div>{{ $tag->name }} ({{$tag->pivot->change}})</div>
+                @endforeach
+            </div>
+            <a href="{{ route('event.delete', $event->id) }}">Удалить</a>
         </div>
     @endforeach
 
